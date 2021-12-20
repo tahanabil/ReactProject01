@@ -13,30 +13,16 @@ import ShelfList from './component/ShelfList';
 
 class BooksApp extends React.Component {
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false,
     books: [],
   };
 
-  componentDidMount() {
-    getAll().then((books) => {
-      // console.clear();
-      console.group('All books API call: ');
-      console.log(books);
-      console.groupEnd();
-      this.setState({ books: books });
-    });
+  async componentDidMount() {
+    const books = await getAll();
+    this.setState({ books: books });
   }
 
   render() {
     const booklist = this.state.books;
-
-    const handelsearch = (value) => this.setState({ showSearchPage: value });
 
     const AddBook = (newbook) => {
       const newBookID = newbook.newBook.id;
@@ -106,11 +92,7 @@ class BooksApp extends React.Component {
         <Routes>
           <Route
             element={
-              <SearchPage
-                AddBook={AddBook}
-                CloseSearch={handelsearch}
-                currentBooks={currentBooks}
-              />
+              <SearchPage AddBook={AddBook} currentBooks={currentBooks} />
             }
             path="/search"
           />
@@ -121,7 +103,6 @@ class BooksApp extends React.Component {
               <ShelfList
                 shelflist={shelflist}
                 shandleShelfChange={handleShelfChange}
-                handelsearch={handelsearch}
               />
             }
           />

@@ -10,7 +10,7 @@ export default class SearchPage extends Component {
 
   render() {
     const AddBook = this.props.AddBook;
-    const CloseSearch = this.props.CloseSearch;
+
     const currentBooks = this.props.currentBooks;
     const handleSearch = (val) => {
       const searchValue = val;
@@ -37,7 +37,7 @@ export default class SearchPage extends Component {
 
     return (
       <div className="search-books">
-        <SearchBar handleSearch={handleSearch} CloseSearch={CloseSearch} />
+        <SearchBar handleSearch={handleSearch} />
         <div className="search-books-results">
           <ol className="books-grid">
             <Shelf
