@@ -15,6 +15,9 @@ npm install
 2-react router dom
 npm add react-router-dom
 
+3-To start the project use :
+npm start
+
 ### Project status
 
 This project still need enhancement in API search function . it's suggested to use {ebounce or throttle }
